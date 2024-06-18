@@ -1,0 +1,27 @@
+Problem statement:
+
+Design a simplified version of Facebook where users can create/delete posts, follow/unfollow another user and are able to see the most recent posts in the user's news feed. Following methods to be implemented:
+
+
+createPost(userld,content): 
+Compose a new post.
+getNewsFeed(userld): 
+Retrieve the 10 most recent post ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself (Order -> most to least recent)
+follow(followerld, followeeld): 
+Follower follows a followee.
+deletePost(userId, postId) : 
+delete post of a user
+unfollow(followerld, followeeld): [bonus]
+Follower unfollows a followee.
+
+Mandatory use case:
+
+
+createPost(userld,content): 
+getNewsFeed(userld): 
+follow(followerld, followeeld): 
+deletePost(userId, postId) : 
+
+Bonus Use case:
+
+unfollow(followerld, followeeld): 

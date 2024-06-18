@@ -1,0 +1,54 @@
+        paymentGateway.addClient("flipkart", "Flipkart", "flipkart@aa.com");
+        paymentGateway.addClient("myntra", "Myntra", "myntra@aa.com");
+        paymentGateway.addClient("jio", "Jio", "jio@aa.com");
+        paymentGateway.addClient("jio", "Jio", "jio@aa.com");
+        paymentGateway.removeClient("jio");
+
+        paymentGateway.hasClient("jio");
+        paymentGateway.hasClient("myntra");
+
+        inputFields.clear();
+        inputFields.add("card_holder");
+        inputFields.add("card_number");
+        inputFields.add("expiry_month");
+        inputFields.add("expiry_year");
+        inputFields.add("cvv");
+
+        paymentGateway.addSupportForPaymode(inputFields, "CARD", "DEBIT");
+        paymentGateway.addSupportForPaymode(inputFields, "CARD", "DEBIT");
+        inputFields.clear();
+        inputFields.add("upi_id");
+        paymentGateway.addSupportForPaymode(inputFields, "UPI", "COLLECT");
+
+        inputFields.clear();
+        inputFields.add("netbanking_id");
+        inputFields.add("password");
+        paymentGateway.addSupportForPaymode(inputFields, "NB", "NB_HDFC");
+        paymentGateway.addMerchantPaymode("flipkart", "UPICOLLECT");
+
+        paymentGateway.addBank("HDFC", "CARD", "DEBIT", 30);
+        paymentGateway.addBank("ICICI", "CARD", "DEBIT", 30);
+        paymentGateway.addBank("ICICI", "UPI", "COLLECT", 40);
+
+        paymentGateway.listSupportedPayModes();
+        paymentGateway.listMerchantSupportedPayModes("flipkart");
+
+        paymentGateway.showDistribution();
+        transactionDetails.clear();
+        transactionDetails.add(new Pair<String, String>("card_holder", "adarsh"));
+        transactionDetails.add(new Pair<String, String>("card_number", "5419190300584227"));
+        transactionDetails.add(new Pair<String, String>("expiry_month", "09"));
+        transactionDetails.add(new Pair<String, String>("expiry_year", "2025"));
+        transactionDetails.add(new Pair<String, String>("cvv", "321"));
+        PaymentInstrument pi = paymentGateway.getPaymentInstrument("CARD", "DEBIT");
+        paymentGateway.makePayment("flipkart", "fp-txn-1", 20, pi, transactionDetails);
+
+        transactionDetails.clear();
+
+        pi = paymentGateway.getPaymentInstrument("UPI", "COLLECT");
+        transactionDetails.add(new Pair<String, String>("netbanking_id", "something@123"));
+        transactionDetails.add(new Pair<String, String>("password", "pass@123"));
+
+        paymentGateway.makePayment("flipkart", "fp-txn-2", 34, pi, transactionDetails);
+
+        paymentGateway.removeMerchantPaymode("flipkart", "UPI", "COLLECT");
