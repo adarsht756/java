@@ -1,3 +1,4 @@
+package Model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -5,9 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 public class Post {
-    private Integer postId;
-    private String userId;
-    private String content;
+    public Integer postId;
+    public String userId;
+    public String content;
     private int likes;
     private HashMap<String, Set<String>> comments;
     private List<String> sharedBy;
@@ -36,5 +37,17 @@ public class Post {
             return false;
         this.comments.get(userId).remove(comment);
         return true;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public List<String> getSharedBy() {
+        return sharedBy;
+    }
+
+    public String getTimestamp() {
+        return this.timestamp;
     }
 }

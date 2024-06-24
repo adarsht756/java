@@ -1,21 +1,20 @@
-import java.util.ArrayList;
+package Model;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
  * User
  */
 public class User {
-    private String userId;
-    private String username;
-    private String email;
+    public String userId;
+    public String username;
+    public String email;
     private Set<String> followers;
 
-    public User(String userId, String username, String email) {
-        this.userId = userId;
-        this.username = username;
-        this.email = email;
+    public User(UserBuilder bulder) {
+        this.userId = bulder.userId;
+        this.username = bulder.username;
+        this.email = bulder.email;
         this.followers = new HashSet<>();
     }
     public void addFlollower(String followerId) {
@@ -29,7 +28,8 @@ public class User {
     public Set<String> getFollowers() {
         return this.followers;
     }
-    public class UserBuilder {
+
+    public static class UserBuilder {
         private String userId;
         private String username;
         private String email;
@@ -50,8 +50,8 @@ public class User {
             return this;
         }
 
-        // public UserBuilder() {
-        //     this.User(this);
-        // }
+        public User build() {
+            return new User(this);
+        }
     }
 }

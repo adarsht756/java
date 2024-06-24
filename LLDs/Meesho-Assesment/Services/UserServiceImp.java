@@ -1,5 +1,8 @@
+package Services;
 import java.util.HashMap;
 import java.util.Set;
+
+import Model.User;
 
 /**
  * UserServiceImp
@@ -24,7 +27,7 @@ public class UserServiceImp {
         if (users.containsKey(userID)) {
             return "UserId already exists, kindly choose another one";
         }
-        User user = new User(userID, username, email);
+        User user = new User.UserBuilder().userId(userID).username(username).email(email).build();
         this.users.put(userID, user);
         return "User created successfully";
     }

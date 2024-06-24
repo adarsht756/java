@@ -24,7 +24,7 @@ public class Router {
             return null;
         int totalPercentage = banks.stream().mapToInt(distributionMap::get).sum();
         int randomValue = new Random().nextInt(totalPercentage);
-        int cumulativePercentage = 0;k
+        int cumulativePercentage = 0;
         for (Bank bank : banks) {
             cumulativePercentage += distributionMap.get(bank);
             if (randomValue < cumulativePercentage) {

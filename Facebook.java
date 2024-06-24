@@ -8,7 +8,7 @@ class Post {
     private Post next;
 
     public Post() {
-
+  
     }
 
     public Post(Integer id) {
